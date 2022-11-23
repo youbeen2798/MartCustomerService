@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>고객 문의 페이지</title>
+</head>
+<body>
+<form method = "post" th:action = "@{'/cs/inquiry/' + ${loginId}}" enctype = "multipart/form-data">
+  제목 : <input type="text" name="title" /><br />
+  분류 :
+  <select name = "category">
+    <option value = "불만접수">불만 접수</option>
+    <option value = "제안">제안</option>
+    <option value = "환불_교환">환불/교환</option>
+    <option value = "칭찬해요">칭찬해요</option>
+    <option value = "기타 문의">기타 문의</option>
+  </select>
+  <br/>
+  본문 : <input type="text" name="mainText"/><br />
+  작성자 :  <span th:text = "${loginId}" name = "inquiryTime"/><br/>
+  파일 : <input type = "file" name = "file" accept = "image/*"/><br/>
+  <input type = "submit" th:value = "확인"/>
+</form>
+<!--취소 버튼 누르면 내가 문의한 목록으로 감-->
+<a th:href="@{/cs/{loginId}(loginId = ${loginId})}"><button>취소</button></a>
+</body>
+</html>
