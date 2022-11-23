@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>세부 정보</title>
+</head>
+<body>
+<h3>문의 상세 내역</h3>
+<a th:href = "@{'/cs/inquiry/' + ${loginId}}">고객 문의하기 페이지로 이동하고 싶다면 클릭하세요.</a><br/>
+<a th:href="@{/cs/logout}">로그아웃하고 싶다면 클릭하세요.</a><br />
+<table border = 1>
+  <thead>
+  <tr>
+    <th>제목</th>
+    <th>분류</th>
+    <th>본문</th>
+    <th th:unless = "${inquiry.boolanswer}" th:text = "답변여부"></th>
+    <th th:if = "${inquiry.boolanswer}" th:text = "답변내용"></th>
+    <th th:if = "${inquiry.boolanswer}" th:text = "답변일시"></th>
+    <th th:if = "${inquiry.boolanswer}" th:text = "cs담당자"></th>
+  </tr>
+  </thead>
+  <tbody>
+    <td th:text = "${inquiry.title}"></td>
+    <td th:text = "${inquiry.category}"></td>
+    <td th:text = "${inquiry.mainText}"></td>
+    <td th:unless="${inquiry.boolanswer}" th:text = "N"></td>
+    <th th:if = "${inquiry.boolanswer}" th:text = "${answer.answerText}"></th>
+    <th th:if = "${inquiry.boolanswer}" th:text = "${answer.answerTime}"></th>
+    <th th:if = "${inquiry.boolanswer}" th:text = "${answer.answerCsAdmin}"></th>
+  </tbody>
+</table>
+
+</body>
+</html>
